@@ -9,10 +9,10 @@ interface IUseData {
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
 }
-const initialSate = { films: [], pageNumber: 0 }
+const initialState = { films: [], pageNumber: 0 }
 
 export function useData(): IUseData {
-  const [data, setData] = useState<IData>(initialSate)
+  const [data, setData] = useState<IData>(initialState)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -25,7 +25,7 @@ export function useData(): IUseData {
       setError(false)
     } catch (err) {
       console.error(err)
-      setData(initialSate)
+      setData(initialState)
       setError(true)
     }
     setLoading(false)
