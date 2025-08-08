@@ -13,6 +13,8 @@ export const PageSelect = ({
   pageNumber,
   handlePage,
 }: PageSelectProps) => {
+  const isFirstPage = page <= 1
+  const isLastPage = page >= pageNumber
   const handleClickNext: React.MouseEventHandler<HTMLButtonElement> = () => {
     const nextPage = page + 1
     if (nextPage <= pageNumber && handlePage) {
@@ -29,9 +31,13 @@ export const PageSelect = ({
   }
   return (
     <S.WrapperPageSelect>
-      <Button onClick={handleClickPrevious}>Anterior</Button>
+      <Button onClick={handleClickPrevious} disabled={isFirstPage}>
+        Anterior
+      </Button>
       <S.Page>{page}</S.Page>
-      <Button onClick={handleClickNext}>Próxima</Button>
+      <Button onClick={handleClickNext} disabled={isLastPage}>
+        Próxima
+      </Button>
     </S.WrapperPageSelect>
   )
 }
